@@ -10,4 +10,4 @@
 
   roles:
   - ec2-find-amis
-  - ansible-role-ec2
+#  - ansible-role-ec2
