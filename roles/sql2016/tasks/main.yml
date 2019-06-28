@@ -1,5 +1,17 @@
 ---
 
+- name: guard statement
+  debug:
+    msg: "About to print out sql login info."
+
+- name: Show me the SQL logins
+  debug:
+    msg: "Username: >{{ mssql_username }}<, Password: >{{ mssql_password }}<"
+
+- name: guard statement
+  debug:
+    msg: "If you can see this but not the debug statement above then that one failed."
+
 - name: Install required DSC modules
   win_psmodule:
     name: "{{ item }}"
