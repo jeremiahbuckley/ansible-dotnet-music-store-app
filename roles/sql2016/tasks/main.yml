@@ -92,7 +92,7 @@
       /SAPWD={{ mssql_password }}
       /AGTSVCSTARTUPTYPE=automatic
       /BROWSERSVCSTARTUPTYPE=automatic
-      /SQLSYSADMINACCOUNTS={{ mssql_username }}
+      /SQLSYSADMINACCOUNTS="localhost\{{ mssql_username }}"
       /SQLBACKUPDIR=C:\Backup
       /SQLUSERDBDIR=C:\Databases
       /SQLUSERDBLOGDIR=C:\UserDatabases
