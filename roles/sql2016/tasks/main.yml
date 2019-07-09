@@ -12,6 +12,10 @@
   debug:
     msg: "If you can see this but not the debug statement above then that one failed."
 
+- name: hostname
+  debug:
+    var: ansible_hostname
+
 - name: Install required DSC modules
   win_psmodule:
     name: "{{ item }}"
@@ -92,7 +96,7 @@
       /SAPWD={{ mssql_password }}
       /AGTSVCSTARTUPTYPE=automatic
       /BROWSERSVCSTARTUPTYPE=automatic
-      /SQLSYSADMINACCOUNTS=localhost\{{ mssql_username }}
+      /SQLSYSADMINACCOUNTS={{ ansible_hostname }}\{{ mssql_username }}
       /SQLBACKUPDIR=C:\Backup
       /SQLUSERDBDIR=C:\Databases
       /SQLUSERDBLOGDIR=C:\UserDatabases
