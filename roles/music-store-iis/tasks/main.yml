@@ -106,17 +106,8 @@
     direction: Inbound
     protocol: TCP
 
-- name: Fix problem with AppPool V2 bug - part 1
-  replace:
-    path: 'C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config'
-    regexp: "AspNetCoreModuleV2"
-    line: '      <add name="AspNetCoreModule" />'
-
-- name: Fix problem with AppPool V2 bug - part 2
-  replace:
-    path: 'C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config'
-    regexp: "AspNetCoreModuleV2"
-    line: '      <add name="AspNetCoreModule" image="%ProgramFiles%\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll" />'
+- name: Fix problem with AppPool V2 bug
+  win_shell: '((Get-Content -path C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config -Raw) -replace 'AspNetCoreModuleV2','AspNetCoreModule') | Set-Content -Path C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config'
 
 - name: ensure iis service is stopped
   win_dsc:
