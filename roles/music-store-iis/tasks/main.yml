@@ -108,13 +108,13 @@
 
 - name: Fix problem with AppPool V2 bug - part 1
   replace:
-    path: "C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config"
+    path: 'C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config'
     regexp: "AspNetCoreModuleV2"
     line: '      <add name="AspNetCoreModule" />'
 
 - name: Fix problem with AppPool V2 bug - part 2
   replace:
-    path: "C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config"
+    path: 'C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config'
     regexp: "AspNetCoreModuleV2"
     line: '      <add name="AspNetCoreModule" image="%ProgramFiles%\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll" />'
 
