@@ -107,7 +107,8 @@
     protocol: TCP
 
 - name: Fix problem with AppPool V2 bug
-  win_shell: '((Get-Content -path C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config -Raw) -replace 'AspNetCoreModuleV2','AspNetCoreModule') | Set-Content -Path C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config'
+  win_shell: |
+    '((Get-Content -path C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config -Raw) -replace 'AspNetCoreModuleV2','AspNetCoreModule') | Set-Content -Path C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config'
 
 - name: ensure iis service is stopped
   win_dsc:
