@@ -132,7 +132,7 @@
 
 - name: Fix problem with AppPool V2 bug
   win_shell: |
-    'mv C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config C:\inetpub\temp\appPools\DefaultAppPool.config.orig;
+    'mv C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config.orig;
     ((Get-Content -path C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config.orig -Raw) -replace "AspNetCoreModuleV2","AspNetCoreModule") | 
     Set-Content -Path C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config'
 
