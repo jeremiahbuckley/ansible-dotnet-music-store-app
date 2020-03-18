@@ -132,9 +132,9 @@
 
 - name: Fix problem with AppPool V2 bug
   win_shell: |
-    'mv C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config.orig;
-    ((Get-Content -path C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config.orig -Raw) -replace "AspNetCoreModuleV2","AspNetCoreModule") | 
-    Set-Content -Path C:\inetpub\temp\appPools\DefaultAppPool\DefaultAppPool.config'
+    'mv C:\Windows\System32\inetsrv\Config\applicationHost.config C:\Windows\System32\inetsrv\Config\applicationHost.config.orig;
+    ((Get-Content -path C:\Windows\System32\inetsrv\Config\applicationHost.config.orig -Raw) -replace "AspNetCoreModuleV2","AspNetCoreModule") | 
+    Set-Content -Path C:\Windows\System32\inetsrv\Config\applicationHost.config'
 
 - name: ensure iis service is stopped - this should be the for-real test
   win_dsc:
