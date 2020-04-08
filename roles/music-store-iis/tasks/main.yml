@@ -27,10 +27,10 @@
     Name: Web-Server
 
 - name: Install dotnetcore-windowshosting
-  win_dsc:
-    resource_name: cChocoPackageInstaller
-    Name: dotnetcore-windowshosting
-    Ensure: Present
+  win_chocolatey:
+    name: dotnetcore-windowshosting
+    version: 3.1.2
+    state: Present
 
 - name: Create site directory structure
   win_dsc:
