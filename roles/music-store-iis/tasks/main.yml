@@ -106,35 +106,11 @@
     direction: Inbound
     protocol: TCP
 
-- name: ensure iis service is stopped - this cycle is just to create a DefaultAppPool - fix a bug related to upstream
-  win_dsc:
-    resource_name: service
-    name: W3Svc
-    state: stopped
-
-- name: ensure iis service is running - this cycle is just to create a DefaultAppPool - fix a bug related to upstream
-  win_dsc:
-    resource_name: service
-    name: W3Svc
-    state: Running
-    startuptype: Automatic
-
-- name: proper response from iis is received - this cycle is just to create a DefaultAppPool - fix a bug related to upstream. It's ok if this fails.
-  win_uri:
-    url: http://{{ ansible_host }}/
-    return_content: yes
-    validate_certs: no
-  register: response
-  until: site_title in response.content
-  retries: 3
-  delay: 1
-  ignore_errors: yes
-
 - name: Fix problem with AppPool V2 bug
   win_shell: |
-    'mv C:\Windows\System32\inetsrv\Config\applicationHost.config C:\Windows\System32\inetsrv\Config\applicationHost.config.orig;
+    mv C:\Windows\System32\inetsrv\Config\applicationHost.config C:\Windows\System32\inetsrv\Config\applicationHost.config.orig;
     ((Get-Content -path C:\Windows\System32\inetsrv\Config\applicationHost.config.orig -Raw) -replace "AspNetCoreModuleV2","AspNetCoreModule") | 
-    Set-Content -Path C:\Windows\System32\inetsrv\Config\applicationHost.config'
+    Set-Content -Path C:\Windows\System32\inetsrv\Config\applicationHost.config
 
 - name: ensure iis service is stopped - this should be the for-real test
   win_dsc:
