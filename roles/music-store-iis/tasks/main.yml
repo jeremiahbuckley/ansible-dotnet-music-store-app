@@ -107,9 +107,8 @@
     protocol: TCP
 
 - name: Fix a problem with AppPool V2 bug - make a safe copy of config file
-  win_robocopy:
-    src: C:\Windows\System32\inetsrv\Config\applicationHost.config
-    dest: C:\Windows\System32\inetsrv\Config\applicationHost.config.safe
+  win_shell: |
+    cp C:\Windows\System32\inetsrv\Config\applicationHost.config C:\Windows\System32\inetsrv\Config\applicationHost.config.safe
 
 - name: Fix problem with AppPool V2 bug
   win_shell: |
